@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333;
+    font-family: sans-serif;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.menu {
+    margin-bottom: 1rem;
+}
+
+.restart {
+    padding: 0.25rem 0.5rem;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    cursor: crosshair;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: hsl(80, 63%, 50%);
+    width: 40px;
+    height: 40px;
+    user-select: none;
+}
+
+.cell.mine {
+    font-size: 1.5rem;
+}
+
+.row:nth-child(even) .cell:nth-child(odd),
+.row:nth-child(odd) .cell:nth-child(even) {
+    background-color: hsl(80, 63%, 80%);
+}
