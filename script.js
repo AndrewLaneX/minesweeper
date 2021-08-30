@@ -6,16 +6,17 @@ const {
     generateMineArray,
 } = minesweeper;
 
-const restartElement = document.querySelector('.restart');
 const containerElement = document.querySelector('.container');
+const statusElement = document.querySelector('.status');
+const restartElement = document.querySelector('.restart');
 
-const mineArray = generateMineArray({
-    rows: 8,
-    cols: 10,
-    mines: 10,
-});
-
-let board = new Board(mineArray);
+let board = new Board(
+    generateMineArray({
+        rows: 8,
+        cols: 10,
+        mines: 10,
+    }),
+);
 
 const rows = Array.from({ length: board.numRows() }, (_, rowIndex) => {
     const rowElement = document.createElement('div');
@@ -63,6 +64,22 @@ const renderGrid = () => {
         });
     });
 
+    switch (board.state()) {
+        case BoardStateEnum.PRISTINE:
+        case BoardStateEnum.IN_PROGRESS:
+        default:
+            statusElement.textContent = '';
+            break;
+
+        case BoardStateEnum.LOST:
+            statusElement.textContent = 'you lost';
+            break;
+
+        case BoardStateEnum.WON:
+            statusElement.textContent = 'you won';
+            break;
+    }
+
     requestAnimationFrame(renderGrid);
 };
 
@@ -88,11 +105,12 @@ document.body.addEventListener('contextmenu', event => {
 });
 
 restartElement.addEventListener('click', () => {
-    const mineArray = generateMineArray({
-        rows: 8,
-        cols: 10,
-        mines: 10,
-    });
+    board = new Board(
+        generateMineArray({
+            rows: 8,
+            cols: 10,
+            mines: 10,
+        }),
+    );
 
-    board = new Board(mineArray);
 });
