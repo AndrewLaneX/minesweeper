@@ -56,9 +56,11 @@ const renderGrid = () => {
                 if (item.flag === CellFlagEnum.NONE) {
                     cell.textContent = '';
                 } else if (item.flag === CellFlagEnum.EXCLAMATION) {
-                    cell.textContent = '!';
+                    cell.textContent = '🏴!';
+                    cell.classList.add('flag', 'flag-e');
                 } else if (item.flag === CellFlagEnum.QUESTION) {
-                    cell.textContent = '?';
+                    cell.textContent = '🏴?';
+                    cell.classList.add('flag', 'flag-q');
                 }
             }
         });
@@ -113,4 +115,9 @@ restartElement.addEventListener('click', () => {
         }),
     );
 
+    document
+        .querySelectorAll('.cell')
+        .forEach(cell =>
+            cell.classList.remove('mine', 'flag', 'flag-e', 'flag-q'),
+        );
 });
