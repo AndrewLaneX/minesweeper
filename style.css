@@ -37,7 +37,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 2rem;
-    background-color: hsl(80, 63%, 50%);
+    background-color: #aad751;
     width: 40px;
     height: 40px;
     user-select: none;
@@ -53,5 +53,14 @@ body {
 
 .row:nth-child(even) .cell:nth-child(odd),
 .row:nth-child(odd) .cell:nth-child(even) {
-    background-color: hsl(80, 63%, 80%);
+    background-color: #a2d149;
+}
+
+.cell.open {
+    background-color: #e5c29f;
+}
+
+.row:nth-child(even) .cell:nth-child(odd).open,
+.row:nth-child(odd) .cell:nth-child(even).open {
+    background-color: #d7b899;
 }

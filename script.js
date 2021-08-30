@@ -50,11 +50,13 @@ const renderGrid = () => {
                     cell.textContent = '💣';
                     cell.classList.add('mine');
                 } else {
-                    cell.textContent = item.numAdjacentMines;
+                    cell.textContent = item.numAdjacentMines || '';
+                    cell.classList.add('open');
                 }
             } else if (item.state === CellStateEnum.CLOSED) {
                 if (item.flag === CellFlagEnum.NONE) {
                     cell.textContent = '';
+                    cell.classList.remove('flag', 'flag-e', 'flag-q');
                 } else if (item.flag === CellFlagEnum.EXCLAMATION) {
                     cell.textContent = '🏴!';
                     cell.classList.add('flag', 'flag-e');
@@ -118,6 +120,6 @@ restartElement.addEventListener('click', () => {
     document
         .querySelectorAll('.cell')
         .forEach(cell =>
-            cell.classList.remove('mine', 'flag', 'flag-e', 'flag-q'),
+            cell.classList.remove('mine', 'flag', 'flag-e', 'flag-q', 'open'),
         );
 });
